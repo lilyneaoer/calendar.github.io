@@ -31,7 +31,7 @@
 		}
 
 		.date_container {
-
+			margin-top: 20px;
 		}
 
 		.time {
@@ -50,10 +50,12 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			margin-top: 20px;
 		}
 		.weather #weatherIcon {
 			width: 128px;
-			margin-top: 20px;
+			top: 20px;
+			position: relative;
 		}
 		.weather #weatherText {
 			margin: 0 80px 0 20px;
@@ -111,7 +113,7 @@
 				console.log(response);
 				document.getElementById('weatherIcon').src = './weatherIcons/' + weather.icon + '.png';
 				document.getElementById('weatherText').innerHTML = weather.text;
-				document.getElementById('weatherValue').innerHTML = weather.feelsLike + '°C';
+				document.getElementById('weatherValue').innerHTML = weather.feelsLike + '°';
 			}
 		} else {
 			console.error('err');
