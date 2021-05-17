@@ -113,7 +113,7 @@
 				console.log(response);
 				document.getElementById('weatherIcon').src = './weatherIcons/' + weather.icon + '.png';
 				document.getElementById('weatherText').innerHTML = weather.text;
-				document.getElementById('weatherValue').innerHTML = weather.feelsLike + '°' + '/   ' + weather.temp + '°';
+				document.getElementById('weatherValue').innerHTML = weather.feelsLike + '°' + '/   ' + '' + weather.temp + '°';
 			}
 		} else {
 			console.error('err');
