@@ -78,6 +78,7 @@
 			<span id="weatherText"></span>
 			<span id="weatherValue"></span>
 		</div>
+		<span id="count"></span>
 	</div>
 </div>
 
@@ -109,8 +110,9 @@
 					var weather = response.now;
 					console.log(response);
 					document.getElementById('weatherIcon').src = './weatherIcons/' + weather.icon + '.png';
-					document.getElementById('weatherText').innerHTML = weather.text;
-					document.getElementById('weatherValue').innerHTML = weather.feelsLike + '°' + '/   ' + weather.temp + '°';
+					document.getElementById('weatherText').innerText = weather.text;
+					document.getElementById('weatherValue').innerText = weather.feelsLike + '°' + '/   ' + weather.temp + '°';
+					document.getElementById('count').innerText = count;
 				}
 			} else {
 				console.error('err');
@@ -119,10 +121,14 @@
 		xhr.send();
 	}
 
+	var count = 0;
 	update();
 	setInterval('update()', 60 * 1000);
 	getWeather();
-	setInterval('getWeather()', 15 * 60 * 1000)
+	setInterval(function() {
+		getWeather();
+		count = count + 1;
+	}, 15 * 60 * 1000)
 
 </script>
 </body>
