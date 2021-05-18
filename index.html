@@ -98,27 +98,32 @@
 		document.getElementById("week").innerHTML = weekString
 	}
 
-	update()
-	setInterval("update()", 60 * 1000)
-	// get weather
-	var url = 'https://devapi.qweather.com/v7/weather/now?key=7ac8c8f2cfd4467a8f29ffaaf3dc961b&location=101290102';
-	var xhr=new XMLHttpRequest();
-	xhr.open('GET', url, false);
-	xhr.onreadystatechange=function(){
-		if(xhr.readyState === 4){
-			if(xhr.status === 200 || xhr.status === 304){
-				var response = JSON.parse(xhr.responseText);
-				var weather = response.now;
-				console.log(response);
-				document.getElementById('weatherIcon').src = './weatherIcons/' + weather.icon + '.png';
-				document.getElementById('weatherText').innerHTML = weather.text;
-				document.getElementById('weatherValue').innerHTML = weather.feelsLike + '°' + '/   ' + '' + weather.temp + '°';
+	function getWeather() {
+		var url = 'https://devapi.qweather.com/v7/weather/now?key=7ac8c8f2cfd4467a8f29ffaaf3dc961b&location=101290102';
+		var xhr=new XMLHttpRequest();
+		xhr.open('GET', url, false);
+		xhr.onreadystatechange=function(){
+			if(xhr.readyState === 4){
+				if(xhr.status === 200 || xhr.status === 304){
+					var response = JSON.parse(xhr.responseText);
+					var weather = response.now;
+					console.log(response);
+					document.getElementById('weatherIcon').src = './weatherIcons/' + weather.icon + '.png';
+					document.getElementById('weatherText').innerHTML = weather.text;
+					document.getElementById('weatherValue').innerHTML = weather.feelsLike + '°' + '/   ' + weather.temp + '°';
+				}
+			} else {
+				console.error('err');
 			}
-		} else {
-			console.error('err');
 		}
+		xhr.send();
 	}
-	xhr.send();
+
+	update();
+	setInterval('update()', 60 * 1000);
+	getWeather();
+	setInterval('getWeather()', 15 * 1000)
+
 </script>
 </body>
 </html>
