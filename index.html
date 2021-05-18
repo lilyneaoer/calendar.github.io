@@ -90,7 +90,7 @@
 
 		var timeString = date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2)
 		var dateString = (date.getMonth() + 1) + '月' + date.getDate() + '日'
-		var weekList = ['日', '一', '二', '三', '四', '五', '六']
+		var weekList = ['天', '一', '二', '三', '四', '五', '六']
 		var weekString = '星期' + weekList[date.getDay()]
 
 		document.getElementById("time").innerHTML = timeString
@@ -100,7 +100,6 @@
 
 	update()
 	setInterval("update()", 60 * 1000)
-	console.log('get weather information');
 	// get weather
 	var url = 'https://devapi.qweather.com/v7/weather/now?key=7ac8c8f2cfd4467a8f29ffaaf3dc961b&location=101290102';
 	var xhr=new XMLHttpRequest();
